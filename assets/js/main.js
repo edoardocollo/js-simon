@@ -49,18 +49,31 @@ function arrayNumeriCasuali(quantiNumeri){
 }
 
 
+var targetOnDocument = $('#alert_box');
 
+function mostraNumeri(target){
+  var alertBox = target;
+  var arrayPartita = arrayNumeriCasuali(5);
+  console.log(arrayPartita);
+  alertBox.text(arrayPartita);
 
+  setTimeout(function () {
+    alertBox.text('inizia a giocare');
+  }, 5000);
+  setTimeout(function () {
+    alertBox.text('');
+  }, 6000);
+}
+mostraNumeri(targetOnDocument);
 
-var alertBox = $('#alert_box');
-var arrayPartita = arrayNumeriCasuali(5);
-console.log(arrayPartita);
-alertBox.text(arrayPartita);
 
 setTimeout(function () {
-  alertBox.text('inizia a giocare');
-}, 30000);
+  targetOnDocument.html('<div>inserisci un numero</div><input class="input" type="number" name="" value=""><button class="btn">inserisci</button>');
 
+}, 6000);
+
+var input = $('.input');
+var btn = $('.btn')
 
 // Una volta inseriti i 5 numeri, il software dice quanti e quali numeri sono stati ricordati.
 
