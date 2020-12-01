@@ -52,14 +52,14 @@ function arrayNumeriCasuali(quantiNumeri){
 
 
 
-
+var alertBox = $('#alert_box');
 var arrayPartita = arrayNumeriCasuali(5);
-alert(arrayPartita);
+console.log(arrayPartita);
+alertBox.text(arrayPartita);
 
-
-
-// Dopo 30 secondi l’utente deve inserire, un prompt alla volta, i numeri che ha visto precedentemente.
-
+setTimeout(function () {
+  alertBox.text('inizia a giocare');
+}, 30000);
 
 
 // Una volta inseriti i 5 numeri, il software dice quanti e quali numeri sono stati ricordati.
