@@ -1,6 +1,6 @@
 $(function() {
 
-//   Un alert espone 5 numeri casuali diversi.
+
 
 
 
@@ -48,34 +48,63 @@ function arrayNumeriCasuali(quantiNumeri){
   return arrayNumeri;
 }
 
-
+// stampo array numeri casuali
 var targetOnDocument = $('#alert_box');
 
+var arrayPartita = arrayNumeriCasuali(5);
+var arraypc = arrayPartita;
 function mostraNumeri(target){
   var alertBox = target;
-  var arrayPartita = arrayNumeriCasuali(5);
   console.log(arrayPartita);
   alertBox.text(arrayPartita);
 
+
+  // dop 30 secondi nascondo numeri e dichiaro inizio gioco
   setTimeout(function () {
     alertBox.text('inizia a giocare');
   }, 5000);
   setTimeout(function () {
     alertBox.text('');
   }, 6000);
+
 }
 mostraNumeri(targetOnDocument);
 
-
+// genero input numeri e bottone per inserimento in array giocatore
 setTimeout(function () {
   targetOnDocument.html('<div>inserisci un numero</div><input class="input" type="number" name="" value=""><button class="btn">inserisci</button>');
+  var input = $('.input');
+  var btn = $('.btn')
+  var arrayGiocatore = [];
 
+  var contatoreGiocatore = 0;
+
+    btn.click(function(){
+      var inputValue = input.val();
+      if ((jQuery.inArray(inputValue, arrayGiocatore) == -1)) {
+        arrayGiocatore.push(inputValue);
+        input.val('')
+        contatoreGiocatore++;
+      }
+      console.log(arrayGiocatore);
+
+      // interrompo inserimento numeri al raggiungimento dei numeri richiesti
+      if (contatoreGiocatore == 5) {
+        targetOnDocument.html('<p>partita finita</p>');
+        setTimeout(function () {
+          // genero contenitori array pc e giocatore e punteggio e stampo valori
+          targetOnDocument.html('<p class="array_giocatore"></p><p class="array_pc"></p>');
+          var targetArrayGiocatore = $('.array_giocatore');
+          var targetArrayPc = $('.array_pc');
+          targetArrayGiocatore.text('numeri da te scelti: '+ arrayGiocatore);
+          targetArrayPc.text('numeri mostrati dal pc: '+ arraypc);
+        }, 2000);
+      }
+  });
 }, 6000);
 
-var input = $('.input');
-var btn = $('.btn')
 
-// Una volta inseriti i 5 numeri, il software dice quanti e quali numeri sono stati ricordati.
+
 
 
 
