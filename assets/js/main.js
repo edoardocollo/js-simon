@@ -93,11 +93,55 @@ setTimeout(function () {
         targetOnDocument.html('<p>partita finita</p>');
         setTimeout(function () {
           // genero contenitori array pc e giocatore e punteggio e stampo valori
-          targetOnDocument.html('<p class="array_giocatore"></p><p class="array_pc"></p>');
+          targetOnDocument.html('<p class="array_giocatore"></p><p class="array_pc"></p><p class="punteggio"></p>');
           var targetArrayGiocatore = $('.array_giocatore');
           var targetArrayPc = $('.array_pc');
+          var punteggio = 0;
+          var targetPunteggio = $('.punteggio');
           targetArrayGiocatore.text('numeri da te scelti: '+ arrayGiocatore);
           targetArrayPc.text('numeri mostrati dal pc: '+ arraypc);
+
+
+
+          function isInList (lista, target){
+            var lista;
+            // console.log(lista);
+            var target;
+            // console.log(target);
+            var control = false;
+            for (var i = 0; i < lista.length; i++) {
+              if (target == lista[i]){
+                control= true;
+              }
+              // console.log(control, lista[i]);
+            }
+            // console.log(control);
+            return control;
+          }
+          for (var i = 0; i < arrayGiocatore.length; i++) {
+            if (isInList(arraypc,arrayGiocatore[i])) {
+              punteggio++;
+            }
+          }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          targetPunteggio.text('il tuo punteggio è di : '+punteggio+' punti');
         }, 2000);
       }
   });
